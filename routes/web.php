@@ -12,5 +12,6 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::post('/contact', [ContactFormController::class, 'submit'])->name('contact.submit');
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('user.profile.store');
 
 require __DIR__.'/auth.php';

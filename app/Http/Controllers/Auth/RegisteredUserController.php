@@ -40,4 +40,22 @@ class RegisteredUserController extends Controller
 
         return response()->noContent();
     }
+
+    public function update(UpdateAccount $request)
+    {
+        $user = Auth::user();
+        
+        $user->username = Request::input('username');
+        $user->email = Request::input('email');
+    
+        if ( ! Request::input('password') == '')
+        {
+            $user->password = bcrypt(Request::input('password'));
+        }
+    
+        $user->save();
+    
+        Flash::message('Your account has been updated!');
+        return Redirect::to('/account');
+    }
 }
