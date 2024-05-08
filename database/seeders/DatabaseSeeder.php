@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'ndc' => 'Test User',
             'email' => 'test@example.com',
-            'image' => 'user.png'
+            'avatar' => 'testexample.png'
         ]);
     }
 }

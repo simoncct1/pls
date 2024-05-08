@@ -1,33 +1,32 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-  
-use Illuminate\Http\Request;
-use Hash;
 use Illuminate\Support\Facades\Auth;
-  
+use Illuminate\Http\Request;
+use App\Models\User;
+
 class ProfileController extends Controller
 {
-
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
         $request->validate([
-            'image' => 'image',
+            'avatar' => 'image',
         ]);
   
         $input = $request->all();
           
-        if ($request->hasFile('image')) {
-            $avatarName = time().'.'.$request->image->getClientOriginalExtension();
-            $request->image->move(public_path('image'), $avatarName);
+        if ($request->hasFile('avatar')) {
+            $avatarName = time().'.'.$request->avatar->getClientOriginalExtension();
+            $request->avatar->move(public_path('image'), $avatarName);
   
-            $input['image'] = $avatarName;
+            $input['avatar'] = $avatarName;
         
         } else {
-            unset($input['image']);
+            unset($input['avatar']);
         }
   
-        auth()->user()->update($input);
+        $user->update($input);
     
         return back()->with('success', 'Profile updated successfully.');
     }

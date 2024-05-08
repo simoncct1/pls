@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('ndc');
+            $table->string('bdg1')->nullable();
+            $table->string('bdg2')->nullable();
+            $table->string('bdg3')->nullable();
+            $table->string('bdg4')->nullable();
+            $table->string('bdg5')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('image')->default('user.png');
             $table->rememberToken();
             $table->timestamps();
         });
