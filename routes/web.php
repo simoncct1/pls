@@ -15,4 +15,6 @@ Route::get('/contact', function () {
 Route::post('/contact', [ContactFormController::class, 'submit'])->name('contact.submit');
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('user.profile');
 Route::post('/user/{id}', 'App\Http\Controllers\ProfileController@update');
+Route::post('/user/badgesite/{id}', 'App\Http\Controllers\ProfileController@badgesite');
+
 require __DIR__.'/auth.php';

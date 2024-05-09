@@ -30,4 +30,13 @@ class ProfileController extends Controller
     
         return back()->with('success', 'Profile updated successfully.');
     }
+
+    public function badgesite(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->bdg1 = '/badges/site.png';
+        $user->save();
+        return back()->with('success', 'Profile updated successfully.');
+    }
+
 }
